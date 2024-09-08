@@ -1,63 +1,80 @@
-from tkinter import Text, Tk, Button, Entry
+from tkinter import Text, Tk, Button, Entry, Label, font
 
 # Configuración ventana principal
 root = Tk()
 root.title("Calculadora POO")
 root.resizable(False, False)
-root.geometry("700x300")
+root.geometry("410x300")
 
 
 # Configuración pantalla de salida 
 pantalla = Entry(root, width=40, bg="black", fg="white", borderwidth=0, 
                  font=("arial", 18, "bold"))
-pantalla.grid(row=0, column=0, columnspan=4, padx=1, pady=1)
+pantalla.grid(row=0, column=0, columnspan=10, padx=1, pady=1)
+label = Label(pantalla, width=40, height=2, bg="black", fg="white", borderwidth=0, font=('Arial', 13))
+label.grid(column=0, row=0)
 
 #Funciones para los eventos
 def presionarBoton_1():
   contenido = pantalla.get()
-  pantalla.insert(len(contenido),"1")
+  pantalla.insert(len(contenido), "1")
+  label.config(text=pantalla.get())
 def presionarBoton_2():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "2")
+  label.config(text=pantalla.get())
 def presionarBoton_3():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "3")
+  label.config(text=pantalla.get())
 def presionarBoton_4():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "4")
+  label.config(text=pantalla.get())
 def presionarBoton_5():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "5")
+  label.config(text=pantalla.get())
 def presionarBoton_6():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "6")
+  label.config(text=pantalla.get())
 def presionarBoton_7():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "7")
+  label.config(text=pantalla.get())
 def presionarBoton_8():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "8")
+  label.config(text=pantalla.get())
 def presionarBoton_9():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "9")
+  label.config(text=pantalla.get())
 def presionarBoton_0():
   contenido = pantalla.get()
-  pantalla.insert(len(contenido), "0")
+  pantalla.insert(len(contenido), "0")  
+  label.config(text=pantalla.get())
 def presionarBoton_punto():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), ".")
+  label.config(text=pantalla.get())
 def presionarBoton_mas():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "+")
+  label.config(text=pantalla.get())
 def presionarBoton_menos():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "-")
+  label.config(text=pantalla.get())
 def presionarBoton_multi():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "*")
+  label.config(text=pantalla.get())
 def presionarBoton_div():
   contenido = pantalla.get()
   pantalla.insert(len(contenido), "/")
+  label.config(text=pantalla.get())
 
 def hacerOperacion():
   primerNumero = 0
@@ -67,24 +84,30 @@ def hacerOperacion():
     primerNumero = pantalla.get().split("+")[0]
     segundoNumero = pantalla.get().split("+")[1]
     pantalla.delete(0, tamaño)
-    pantalla.insert(0, str(int(primerNumero) + int(segundoNumero)))
+    pantalla.insert(0, str(float(primerNumero) + float(segundoNumero)))
+    label.config(text=pantalla.get())
   if (pantalla.get().find("-") != -1):
     primerNumero = pantalla.get().split("-")[0]
     segundoNumero = pantalla.get().split("-")[1]
     pantalla.delete(0, tamaño)
-    pantalla.insert(0, str(int(primerNumero) - int(segundoNumero)))
+    pantalla.insert(0, str(float(primerNumero) - float(segundoNumero)))
+    label.config(text=pantalla.get())
   if (pantalla.get().find("*") != -1):
     primerNumero = pantalla.get().split("*")[0]
     segundoNumero = pantalla.get().split("*")[1]
     pantalla.delete(0, tamaño)
-    pantalla.insert(0, str(int(primerNumero) * int(segundoNumero)))
+    pantalla.insert(0, str(float(primerNumero) * float(segundoNumero)))
+    label.config(text=pantalla.get())
   if (pantalla.get().find("/") != -1):
     primerNumero = pantalla.get().split("/")[0]
     segundoNumero = pantalla.get().split("/")[1]
     pantalla.delete(0, tamaño)
-    pantalla.insert(0, str(int(primerNumero) / int(segundoNumero)))
-
+    if int(segundoNumero != 0):
+      pantalla.insert(0, str(float(primerNumero) / float(segundoNumero)))
+      label.config(text=pantalla.get())
   
+
+
 # Configuración botones
 boton_1 = Button(root, text="1", width=9, height=3, bg="white", fg="red",command=presionarBoton_1, borderwidth=0, cursor="hand2").grid(row=1, column=0, padx=1, pady=0)
 boton_2 = Button(root, text="2", width=9, height=3, bg="white", fg="red",command=presionarBoton_2, borderwidth=0, cursor="hand2").grid(row=1, column=1, padx=0, pady=1)
